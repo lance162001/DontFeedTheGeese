@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Goose : MonoBehaviour
 {
-    public float targetDelay = 1.8f;
+    float targetDelay;
     public float viewDistance = 12;
     float targetTimer = 0;
     public float speed;
@@ -16,17 +16,32 @@ public class Goose : MonoBehaviour
     void Start()
     {
         targets = new Vector3[3];
+        
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log(collision);
+        if (collision.gameObject.name == "PlayerSprite") { m.hurt(); }
+        if (collision.gameObject.name == "Bread") { m.byeGoose(gameObject, this); }
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        Debug.Log(collision);   
         if (collision.gameObject.name == "PlayerSprite") { m.hurt(); }
         if (collision.gameObject.name == "Bread") { m.byeGoose(gameObject,this); }
     }
 
     private void Move() {
         if (targetCount != 0) {
-            transform.position = Vector3.MoveTowards(transform.position, targets[0], speed);
+            transform.position = Vector3.MoveTowards(transform.position, targets[0], speed*0.01f);
+            if (transform.position == targets[0])
+            {
+                for (int i = 1; i < targetCount; i++)
+                {
+                    targets[i - 1] = targets[i];
+                }
+            }
         }
         else
         {
@@ -34,8 +49,9 @@ public class Goose : MonoBehaviour
         }
     }
 
-    private void Update()
+    void Update()
     {
+        Move();
         targetTimer += Time.deltaTime;
         if (targetTimer >= targetDelay)
         {
@@ -49,10 +65,12 @@ public class Goose : MonoBehaviour
 
     public void setTarget(Vector3 t) {
         if (targets.Length == targetCount) {
+            targetCount--;
             for (int i = 1; i < targetCount; i++) {
                 targets[i - 1] = targets[i];
             }
         }
+        targetDelay = Random.Range(1, 2);
         targets[targetCount] = t;
         if (targetCount < targets.Length) { targetCount++; }
     }

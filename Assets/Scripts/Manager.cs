@@ -11,19 +11,24 @@ public class Manager : MonoBehaviour
     int curGeese;
     bool lost = false;
     UserInput input;
-    GameObject goosePrefab;
+    public GameObject goosePrefab;
 
     // Start is called before the first frame update
     void Start()
     {
         input = GetComponentInChildren<UserInput>();
         playerHealth = maxPlayerHealth;
+        curGeese = 0;
+        maxGeese = 30;
     }
 
     // Update is called once per frame
     void Update()
     {
         if (!lost) { input.run(); }
+        if (curGeese < 5) { 
+            curGeese+=createGeese(Random.Range(5, 10)); 
+        }
     }
 
     public void hurt()
@@ -52,8 +57,9 @@ public class Manager : MonoBehaviour
         while (count < amount && maxGeese > curGeese)
         {
             ++count;
-            GameObject newGoose = Object.Instantiate(goosePrefab);
-            newGoose.transform.position = new Vector3(Random.Range(-100,100),Random.Range(-100,100),0);
+            GameObject newGoose = Instantiate(goosePrefab);
+            Debug.Log(newGoose);
+            newGoose.transform.position = new Vector3(Random.Range(-10,10),Random.Range(-10,10),0);
             newGoose.SetActive(true);
         }
         return count;
