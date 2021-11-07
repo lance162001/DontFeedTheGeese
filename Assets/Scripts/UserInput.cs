@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class UserInput : MonoBehaviour {
+    //Animation
+    public Animator animator;
+    
     public float RotationSpeed = 20;
     public float speed;
     bool firing = false;
@@ -12,6 +15,11 @@ public class UserInput : MonoBehaviour {
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
         transform.Translate(new Vector3(x,y,0)*speed*Time.deltaTime);
+
+        //Animator
+        animator.SetFloat("SpeedH", x * speed * Time.deltaTime);
+        animator.SetFloat("SpeedV", y * speed * Time.deltaTime);
+
         if (!firing && Input.GetMouseButtonDown(0)){
             firing=true;
             bread.SetActive(true);
