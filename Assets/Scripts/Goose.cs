@@ -23,7 +23,7 @@ public class Goose : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.name == "PlayerSprite") { m.hurt(); }
-        if (collision.gameObject.name == "Bread") { m.byeGoose(gameObject, this);  geeseFed = geeseFed + 1;}
+        if (collision.gameObject.name == "Bread") { m.byeGoose(gameObject, this);  geeseFed++;}
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
