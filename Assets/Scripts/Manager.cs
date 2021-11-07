@@ -30,7 +30,7 @@ public class Manager : MonoBehaviour
         if (curGeese < 5) { 
             curGeese+=createGeese(Random.Range(5, 10)); 
         }
-        if (Random.Range(0,30) == 0) { curGeese += createGeese(2); }
+        if (Random.Range(0,10) == 1) { curGeese += createGeese(2); }
     }
 
     public void hurt()
@@ -60,7 +60,6 @@ public class Manager : MonoBehaviour
         {
             ++count;
             GameObject newGoose = Instantiate(goosePrefab);
-            Debug.Log(newGoose);
             newGoose.transform.position = new Vector3(Random.Range(-25,25),Random.Range(-25,25),0);
             newGoose.SetActive(true);
         }
