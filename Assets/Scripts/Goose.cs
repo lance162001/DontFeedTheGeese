@@ -5,7 +5,7 @@ using UnityEngine;
 public class Goose : MonoBehaviour
 {
     float targetDelay;
-    public float viewDistance = 12;
+    public float viewDistance = 32;
     float targetTimer = 0;
     public float speed;
     Vector3[] targets;
@@ -71,6 +71,7 @@ public class Goose : MonoBehaviour
             }
         }
         targetDelay = Random.Range(1, 2);
+        speed = Random.Range(1, 4);
         targets[targetCount] = t;
         if (targetCount < targets.Length) { targetCount++; }
     }

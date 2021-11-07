@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class UserInput : MonoBehaviour {
-    //Animation
     public Animator animator;
     
-    public float RotationSpeed = 20;
     public float speed;
     bool firing = false;
     public GameObject bread;
@@ -34,8 +32,5 @@ public class UserInput : MonoBehaviour {
             Vector3 direction = (worldPosition - transform.position).normalized;
             sprite.transform.rotation = Quaternion.LookRotation(Vector3.forward,direction);
         }
-    }
-
-    void Start(){
     }
 }
