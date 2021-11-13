@@ -13,6 +13,7 @@ public class Manager : MonoBehaviour
     bool lost = false;
     UserInput input;
     public GameObject goosePrefab;
+    public int geeseFed;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +23,7 @@ public class Manager : MonoBehaviour
         playerHealth = maxPlayerHealth;
         curGeese = 0;
         maxGeese = 30;
+        geeseFed = 0;
     }
 
     // Update is called once per frame
@@ -54,6 +56,7 @@ public class Manager : MonoBehaviour
     {
         Destroy(o);
         curGeese += createGeese(Random.Range(0,4));
+        geeseFed++;
     }
 
     int createGeese(int amount)
