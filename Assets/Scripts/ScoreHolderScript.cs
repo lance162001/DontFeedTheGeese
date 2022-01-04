@@ -6,35 +6,28 @@ using UnityEngine.SceneManagement;
 public class ScoreHolderScript : MonoBehaviour
 {
 
-    public int gooseFedHold = 0;
-    public Manager managerScript;
-    public Scene currentScene;
-    public GameObject managerObject;
+    public int geeseFed = 0;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        managerObject = GameObject.Find("Manager");
-        managerScript = managerObject.GetComponent<Manager>();
 
-        // Create a temporary reference to the current scene.
-        currentScene = SceneManager.GetActiveScene();
     }
 
     // Update is called once per frame
     void Update()
     {
-        currentScene = SceneManager.GetActiveScene();
-        // Retrieve the name of this scene.
-        string sceneName = currentScene.name;
-        if (sceneName == "TileMapTesting")
-        {
-            managerObject = GameObject.Find("Manager");
-            managerScript = managerObject.GetComponent<Manager>();
-            gooseFedHold = managerScript.geeseFed;
-        }
 
     }
+
+    public void feedGeese()
+    {
+        geeseFed++;
+        Debug.Log("Fuck " + geeseFed);
+    }
+
+
     private static ScoreHolderScript holdInstance;
     void Awake()
     {

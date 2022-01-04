@@ -28,7 +28,7 @@ public class ScoreDisplay : MonoBehaviour
         gooseScore = myScoreDisplay.GetComponent<Text>();
 
         //Update text and display
-        gooseScore.text = "Geese fed:  " + scoreScript.gooseFedHold;
+        gooseScore.text = "Geese fed:  " + scoreScript.geeseFed;
         //Debug.Log(scoreScript.gooseFedHold);
 
         //Set text font, color, size, and alignment

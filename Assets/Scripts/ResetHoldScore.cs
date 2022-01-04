@@ -20,7 +20,7 @@ public class ResetHoldScore : MonoBehaviour
         GameObject scoreObject = GameObject.Find("ScoreHolder");
         scoreScript = scoreObject.GetComponent<ScoreHolderScript>();
         //Find Score and update
-        scoreScript.gooseFedHold = 0;
+        scoreScript.geeseFed = 0;
     }
 
     // Update is called once per frame
