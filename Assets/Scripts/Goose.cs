@@ -69,7 +69,7 @@ public class Goose : MonoBehaviour
             }
         }
         targetDelay = Random.Range(1, 2);
-        speed = Random.Range(1, 4);
+        speed = Random.Range(1, 3);
         targets[targetCount] = t;
         if (targetCount < targets.Length) { targetCount++; }
     }

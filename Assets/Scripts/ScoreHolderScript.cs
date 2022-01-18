@@ -24,7 +24,6 @@ public class ScoreHolderScript : MonoBehaviour
     public void feedGeese()
     {
         geeseFed++;
-        Debug.Log("Fuck " + geeseFed);
     }
 
 
