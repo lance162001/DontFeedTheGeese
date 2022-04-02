@@ -47,7 +47,7 @@ public class Goose : MonoBehaviour
         }
         else
         {
-            targets[targetCount]=new Vector3(Random.Range(-10, 10),Random.Range(-10,10));
+            targets[targetCount]=new Vector3(Random.Range(-10,10),Random.Range(-10,10));
         }
     }
 

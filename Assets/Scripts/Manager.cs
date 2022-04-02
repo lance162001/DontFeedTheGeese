@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class Manager : MonoBehaviour
 {
+    GameObject playerObj;
     int playerHealth;
-    int maxPlayerHealth;
     int maxGeese;
     int curGeese;
     bool lost = false;
@@ -15,15 +15,22 @@ public class Manager : MonoBehaviour
     public GameObject goosePrefab;
     public ScoreHolderScript scoreScript;
     public GameObject scoreObject;
+    int[] xCoords;
+    int[] yCoords;
+    int xCoord;
+    int yCoord;
+    int count;
+    bool spawnG;
 
     // Start is called before the first frame update
     void Start()
     {
         input = GetComponentInChildren<UserInput>();
-        maxPlayerHealth = 1;
-        playerHealth = maxPlayerHealth;
+        playerObj = GameObject.Find("Player");
+        playerHealth = 2;
         curGeese = 0;
         maxGeese = 40;
+        spawnG = false;
     }
 
     // Update is called once per frame
@@ -68,9 +75,26 @@ public class Manager : MonoBehaviour
         int count = 0;
         while (count < amount && maxGeese > curGeese)
         {
+            //Geese spawn on the map, excluding the player coordinates
+            while (spawnG == false)
+            {
+                xCoord = Random.Range(-20, 30);
+                if (xCoord != playerObj.transform.position.x)
+                {
+                    spawnG = true;
+                    Debug.Log("Position X OKAY!");
+                }
+                yCoord = Random.Range(-20, 65);
+                if (yCoord != playerObj.transform.position.y)
+                {
+                    spawnG = true;
+                    Debug.Log("Position Y OKAY!");
+                }
+            }
             ++count;
             GameObject newGoose = Instantiate(goosePrefab);
-            newGoose.transform.position = new Vector3(Random.Range(-30,50),Random.Range(-20,75),0);
+            newGoose.transform.position = new Vector3(xCoord,yCoord,0);
+            spawnG = false;
             newGoose.SetActive(true);
         }
         return count;
