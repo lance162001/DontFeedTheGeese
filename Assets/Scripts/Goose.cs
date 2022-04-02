@@ -12,7 +12,7 @@ public class Goose : MonoBehaviour
     int targetCount = 0;
     public Manager m;
     public GameObject player;
-    public bool startGame = false;
+    public bool startGame = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,19 +22,16 @@ public class Goose : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (startGame == true)
-        {
-            if (collision.gameObject.name == "PlayerSprite") { m.hurt(); }
-            if (collision.gameObject.name == "Bread") { m.byeGoose(gameObject, this); }
-        }
+        if (collision.gameObject.name == "PlayerSprite") { m.hurt(); }
+        if (collision.gameObject.name == "Bread") { m.byeGoose(gameObject, this); }
+
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (startGame == true)
-        {
-            if (collision.gameObject.name == "PlayerSprite") { m.hurt(); }
-            if (collision.gameObject.name == "Bread") { m.byeGoose(gameObject, this); }
-        }
+        
+        if (collision.gameObject.name == "PlayerSprite") { m.hurt(); }
+        if (collision.gameObject.name == "Bread") { m.byeGoose(gameObject, this); }
+            
     }
 
     private void Move() {
@@ -56,17 +53,14 @@ public class Goose : MonoBehaviour
 
     void Update()
     {
-        if (startGame == true)
+        Move();
+        targetTimer += Time.deltaTime;
+        if (targetTimer >= targetDelay)
         {
-            Move();
-            targetTimer += Time.deltaTime;
-            if (targetTimer >= targetDelay)
+            targetTimer = 0;
+            if (Vector3.Distance(transform.position, player.transform.position) <= viewDistance)
             {
-                targetTimer = 0;
-                if (Vector3.Distance(transform.position, player.transform.position) <= viewDistance)
-                {
-                    setTarget(player.transform.position);
-                }
+                setTarget(player.transform.position);
             }
         }
     }

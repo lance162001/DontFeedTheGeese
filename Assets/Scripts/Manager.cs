@@ -23,7 +23,7 @@ public class Manager : MonoBehaviour
         maxPlayerHealth = 1;
         playerHealth = maxPlayerHealth;
         curGeese = 0;
-        maxGeese = 30;
+        maxGeese = 40;
     }
 
     // Update is called once per frame
@@ -70,7 +70,7 @@ public class Manager : MonoBehaviour
         {
             ++count;
             GameObject newGoose = Instantiate(goosePrefab);
-            newGoose.transform.position = new Vector3(Random.Range(-25,25),Random.Range(-25,25),0);
+            newGoose.transform.position = new Vector3(Random.Range(-30,50),Random.Range(-20,75),0);
             newGoose.SetActive(true);
         }
         return count;
