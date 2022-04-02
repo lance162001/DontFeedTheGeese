@@ -27,7 +27,7 @@ public class Manager : MonoBehaviour
     {
         input = GetComponentInChildren<UserInput>();
         playerObj = GameObject.Find("Player");
-        playerHealth = 2;
+        playerHealth = 1;
         curGeese = 0;
         maxGeese = 40;
         spawnG = false;
@@ -79,16 +79,14 @@ public class Manager : MonoBehaviour
             while (spawnG == false)
             {
                 xCoord = Random.Range(-20, 30);
-                if (xCoord != playerObj.transform.position.x)
+                if (xCoord != playerObj.transform.position.x && xCoord != playerObj.transform.position.x+1 && xCoord != playerObj.transform.position.x-1)
                 {
                     spawnG = true;
-                    Debug.Log("Position X OKAY!");
                 }
                 yCoord = Random.Range(-20, 65);
-                if (yCoord != playerObj.transform.position.y)
+                if (yCoord != playerObj.transform.position.y && yCoord != playerObj.transform.position.y+1 && yCoord != playerObj.transform.position.y-1)
                 {
                     spawnG = true;
-                    Debug.Log("Position Y OKAY!");
                 }
             }
             ++count;
